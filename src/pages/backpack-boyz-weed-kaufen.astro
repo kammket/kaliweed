@@ -8,17 +8,19 @@ const faqItems = [
   { question: "Wie erkenne ich originale Backpack Boyz Produkte?", answer: "Originale Packs haben hochwertige Verpackungen, Hologramme und ein starkes Aroma. Fälschungen sind oft minderwertig." },
 ];
 
+const mainEntity = faqItems.map(faq => ({
+  "@type": "Question",
+  "name": faq.question,
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": faq.answer
+  }
+}));
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqItems.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
+  "mainEntity": mainEntity
 };
 ---
 <Layout
