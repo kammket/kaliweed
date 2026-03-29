@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import FAQ from '../components/FAQ.astro';
+import { products } from '../data/products';
+
+const topshelfProducts = products.filter(p => p.featured).slice(0, 8);
+
+const faqItems = [
+  { question: "Was bedeutet Topshelf Gras?", answer: "Topshelf (dt. 'oberes Regal') bezeichnet Cannabis höchster Qualität. In US-Dispensaries werden die besten Blüten im obersten Regal präsentiert – daher der Name. Topshelf Gras hat dichte Buds, starkes Aroma, hohen THC-Gehalt und reichlich Trichome." },
+  { question: "Wie erkenne ich Topshelf Qualität?", answer: "Topshelf Gras erkennt man an kompakten, dichten Buds mit einer dicken Schicht von Trichomen, die wie Kristalle aussehen. Es hat ein intensives, komplexes Aroma, bricht sauber und hat keine Samen oder Stiele." },
+  { question: "Warum ist Topshelf Gras teurer?", answer: "Topshelf Gras erfordert perfekte Anbaubedingungen, handverlesene Genetiken, sorgfältiges Trimming, langsame Trocknung und lange Aushärtung. Dieser aufwändige Prozess resultiert in deutlich höherer Qualität." },
+];
+---
+<Layout
+  title="Topshelf Gras | Premium Cannabis Höchster Qualität Kaufen"
+  description="Topshelf Gras kaufen ✓ Cannabis höchster Qualitätsstufe ✓ THC bis 34% ✓ Handverlesene Buds ✓ Kalifornische Topshelf-Standards"
+  canonical="/topshelf-gras"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Topshelf Gras</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Premium Cannabis der höchsten Qualitätsstufe – handverlesene Buds mit perfekter Struktur, intensiven Aromen und maximaler Potenz.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-4xl">
+      <h2 class="text-2xl font-black text-white mb-6">Was ist Topshelf Gras?</h2>
+      <p class="text-text-secondary leading-relaxed mb-4">Der Begriff „Topshelf" stammt aus kalifornischen Dispensaries. Dort werden die besten, hochwertigsten Cannabis-Blüten im obersten Regal platziert – sichtbar, aber auch zum höchsten Preis. Topshelf Gras steht also für das Beste, was die Cannabis-Welt zu bieten hat.</p>
+      <p class="text-text-secondary leading-relaxed mb-8">Bei uns findest du ausschließlich Topshelf-Qualität, die den strengsten kalifornischen Standards entspricht.</p>
+
+      <h3 class="text-xl font-bold text-white mb-4">Merkmale von Topshelf Gras</h3>
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <h4 class="text-gold font-bold mb-2">Perfekte Optik</h4>
+          <p class="text-text-secondary text-sm">Kompakte, sorgfältig getrimmte Buds mit dichter Trichom-Schicht, die wie Kristalle schimmern. Lebhafte Farben von tiefem Grün bis hin zu Violett.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <h4 class="text-gold font-bold mb-2">Ausdrucksstarkes Aroma</h4>
+          <p class="text-text-secondary text-sm">Intensive, vielschichtige Terpenprofile mit deutlichen Aromen – von fruchtig-süß bis erdig-würzig. Der Geruch ist bereits beim Öffnen der Verpackung wahrnehmbar.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <h4 class="text-gold font-bold mb-2">Hohe Wirkstoffdichte</h4>
+          <p class="text-text-secondary text-sm">THC-Werte von häufig 25% oder mehr, bei einzelnen Sorten bis zu 34%. Die Wirkung ist intensiv und langanhaltend.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <h4 class="text-gold font-bold mb-2">Exzellente Herkunft</h4>
+          <p class="text-text-secondary text-sm">Handverlesene Sorten aus Kalifornien, angebaut unter optimalen Bedingungen von erfahrenen Züchtern mit jahrelanger Expertise.</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-white mb-4">Qualitätsstufen von Cannabis</h3>
+      <div class="bg-surface-light rounded-2xl p-8 border border-white/5 mb-8">
+        <div class="space-y-4">
+          <div><div class="flex justify-between text-sm mb-1"><span class="text-text-secondary">Reggie / Low Grade</span><span class="text-text-secondary/50">10-15% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-red-500/40 rounded-full" style="width: 20%"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-1"><span class="text-text-secondary">Mid Grade</span><span class="text-text-secondary/50">15-20% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-orange-500/40 rounded-full" style="width: 40%"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-1"><span class="text-white">High Grade</span><span class="text-text-secondary">20-25% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-green-500/50 rounded-full" style="width: 60%"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-1"><span class="text-gold font-bold">Topshelf</span><span class="text-gold">25-30% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-gold/60 rounded-full" style="width: 80%"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-1"><span class="text-gold font-bold">Ultra Topshelf</span><span class="text-gold">30-34% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-gold rounded-full" style="width: 95%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-black text-white mb-8">Topshelf Gras im Shop</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {topshelfProducts.map((p) => <ProductCard product={p} />)}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/shop" class="inline-block bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl transition-colors">Alle Topshelf Produkte</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-black text-white text-center mb-10">Häufige Fragen zu Topshelf Gras</h2>
+    <FAQ items={faqItems} />
+  </section>
+</Layout>

@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products, categories } from '../data/products';
+
+const sortedProducts = [...products];
+---
+<Layout
+  title="Cali Weed Shop | Alle Premium Cannabis Sorten Online Kaufen"
+  description="Cali Weed Shop ✓ Über 100 Premium Cannabis Sorten ✓ Wizard Trees, Jungle Boys, Backpack Boyz & mehr ✓ THC bis 34% ✓ Jetzt Cali Weed online bestellen"
+  canonical="/shop"
+>
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-text-secondary">
+      <a href="/" class="hover:text-gold transition-colors">Startseite</a>
+      <span class="mx-2">/</span>
+      <span class="text-white">Shop</span>
+    </nav>
+  </div>
+
+  <!-- Header -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-3xl md:text-4xl font-black text-white mb-4">Cali Weed Shop</h1>
+    <p class="text-text-secondary max-w-3xl">Entdecke unser komplettes Sortiment an Premium Cali Weed Sorten. Über {products.length} handverlesene Produkte von den besten Marken Kaliforniens.</p>
+  </section>
+
+  <!-- Categories Filter -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+    <div class="flex flex-wrap gap-2" id="category-filter">
+      <button data-category="all" class="filter-btn active bg-gold text-primary font-semibold px-4 py-2 rounded-lg text-sm transition-colors">Alle</button>
+      {categories.map((cat) => (
+        <a href={`/kategorie/${cat.slug}`} class="filter-btn bg-surface-light text-text-secondary hover:text-white hover:border-gold/30 border border-white/5 font-semibold px-4 py-2 rounded-lg text-sm transition-colors">{cat.name}</a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Product Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <p class="text-text-secondary text-sm mb-6">{products.length} Produkte</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="product-grid">
+      {sortedProducts.map((product) => (
+        <ProductCard product={product} />
+      ))}
+    </div>
+  </section>
+
+  <!-- SEO Text -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <h2 class="text-2xl font-black text-white mb-4">Cali Weed Online Kaufen – Dein Premium Cannabis Shop</h2>
+        <p class="text-text-secondary leading-relaxed mb-4">Unser Cali Weed Shop bietet dir eine handverlesene Auswahl an Premium-Cannabis aus den besten Anbaugebieten Kaliforniens. Jede Sorte wird sorgfältig ausgewählt, um höchste Qualitätsstandards zu garantieren.</p>
+        <p class="text-text-secondary leading-relaxed">Von bekannten Marken wie <strong class="text-white">Wizard Trees</strong>, <strong class="text-white">Jungle Boys</strong>, <strong class="text-white">Backpack Boyz</strong> und <strong class="text-white">Cookies</strong> bis hin zu exklusiven <strong class="text-white">Cali Weed Packs</strong> – bei uns findest du alles, was das Cannabis-Herz begehrt.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

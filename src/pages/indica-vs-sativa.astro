@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Was ist der Unterschied zwischen Indica und Sativa?", answer: "Indica wirkt entspannend und körperlich, Sativa eher anregend und geistig. Hybride vereinen beide Effekte." },
+  { question: "Welche Sorte ist für mich geeignet?", answer: "Das hängt von deinen Bedürfnissen ab: Entspannung (Indica), Kreativität/Energie (Sativa), Ausgewogenheit (Hybrid)." },
+  { question: "Wie erkenne ich die Unterschiede?", answer: "Indica-Buds sind kompakt und breit, Sativa-Buds eher lang und luftig. Auch das Aroma unterscheidet sich." },
+];
+---
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+<Layout
+  title="Indica vs Sativa | Unterschiede, Wirkung & Tipps"
+  description="Indica vs Sativa Unterschiede ✓ Wirkung, Aussehen & Anwendung ✓ Tipps zur Sortenwahl ✓ Alles über Hybrid-Sorten."
+  canonical="/indica-vs-sativa"
+  jsonLd={jsonLd}
+>
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Indica vs Sativa</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Erfahre alles über die Unterschiede zwischen Indica und Sativa – Wirkung, Aussehen, Anwendung und Tipps zur Sortenwahl.</p>
+      </div>
+    </div>
+  </section>
+  <FAQ items={faqItems} />
+</Layout>

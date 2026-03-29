@@ -1,0 +1,41 @@
+---
+import type { Product } from '../data/products';
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+const minPrice = Math.min(...product.variations.map(v => v.price));
+const maxPrice = Math.max(...product.variations.map(v => v.price));
+---
+<a href={`/produkt/${product.slug}`} class="group bg-surface-light rounded-2xl overflow-hidden border border-white/5 hover:border-gold/30 transition-all duration-300 hover:shadow-xl hover:shadow-gold/5 hover:-translate-y-1">
+  <div class="aspect-square bg-primary/50 overflow-hidden relative">
+    <img
+      src={product.image}
+      alt={product.name}
+      class="w-full h-full object-cover object-center transition-opacity duration-300 group-hover:opacity-80"
+      loading="lazy"
+      onError="this.style.display='none'; this.parentNode.querySelector('.fallback-emoji').style.display='flex';"
+    />
+    <div class="w-full h-full bg-gradient-to-br from-accent/20 to-secondary/40 flex items-center justify-center fallback-emoji" style="display:none;">
+      <span class="text-5xl opacity-30">🌿</span>
+    </div>
+    <div class="absolute top-3 left-3">
+      <span class="bg-gold/90 text-primary text-xs font-bold px-2 py-1 rounded-md">{product.type}</span>
+    </div>
+    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+      <span class="bg-gold text-primary px-4 py-2 rounded-lg font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Ansehen</span>
+    </div>
+  </div>
+  <div class="p-4">
+    <p class="text-xs text-gold font-semibold uppercase tracking-wider mb-1">{product.category}</p>
+    <h3 class="text-sm font-bold text-white group-hover:text-gold transition-colors line-clamp-2 mb-2">{product.name}</h3>
+    <div class="flex items-center justify-between">
+      <p class="text-gold font-bold text-sm">
+        {minPrice === maxPrice ? `€${minPrice.toFixed(2)}` : `€${minPrice.toFixed(2)} – €${maxPrice.toFixed(2)}`}
+      </p>
+      {product.thc !== 'N/A' && (
+        <span class="text-xs text-text-secondary bg-white/5 px-2 py-0.5 rounded">THC {product.thc}</span>
+      )}
+    </div>
+  </div>
+</a>

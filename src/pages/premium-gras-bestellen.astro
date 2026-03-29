@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Was ist Premium Gras?", answer: "Premium Gras zeichnet sich durch höchste Qualität, dichte Buds, starkes Aroma und hohen THC-Gehalt aus." },
+  { question: "Wie erkenne ich Premium Qualität?", answer: "Achte auf Trichome, Aroma, Struktur und Herkunft der Sorte." },
+  { question: "Warum ist Premium Gras teurer?", answer: "Aufwändige Zucht, Handverlesung und perfekte Bedingungen führen zu höheren Preisen, aber auch besserer Wirkung." },
+];
+---
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+<Layout
+  title="Premium Gras Bestellen | Hochwertiges Cannabis Online"
+  description="Premium Gras bestellen ✓ Cannabis höchster Qualität ✓ Tipps zur Auswahl & Erkennung von Premium Weed ✓ Jetzt hochwertiges Gras entdecken."
+  canonical="/premium-gras-bestellen"
+  jsonLd={jsonLd}
+>
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Premium Gras Bestellen</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Bestelle Premium Gras online – Tipps zur Auswahl, Qualitätsmerkmale und Vorteile von hochwertigem Cannabis.</p>
+      </div>
+    </div>
+  </section>
+  <FAQ items={faqItems} />
+</Layout>

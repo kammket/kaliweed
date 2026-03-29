@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import TrustSignals from '../components/TrustSignals.astro';
+import Reviews from '../components/Reviews.astro';
+import FAQ from '../components/FAQ.astro';
+import { products, categories, getFeaturedProducts } from '../data/products';
+
+const featuredProducts = getFeaturedProducts();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Cali Weed Kaufen",
+  "url": "https://caliweedkaufen.de",
+  "description": "Cali Weed kaufen – Premium THC Cali Weed Packs & Blüten online in Deutschland bestellen.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://caliweedkaufen.de/shop?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const faqItems = [
+  { question: "Kann Cali Weed medizinisch angewendet werden?", answer: "Ja, aufgrund seiner starken Wirkung und gezielten Cannabinoid-Zusammensetzung wird Cali Weed häufig zur Unterstützung bei chronischen Schmerzen, Stress, Angstzuständen, Schlafproblemen und Appetitmangel genutzt." },
+  { question: "Gibt es mögliche Nebenwirkungen bei Cali Weed?", answer: "Wie bei jedem Cannabisprodukt können auch hier unerwünschte Effekte auftreten, vor allem bei hohen Dosierungen. Dazu zählen unter anderem trockener Mund, gerötete Augen, Schwindel oder in seltenen Fällen Unruhe und Angstgefühle." },
+  { question: "Wodurch hebt sich Cali Weed von anderen Cannabis-Sorten ab?", answer: "Cali Weed überzeugt durch seine besondere Qualität, die auf fortschrittliche Anbaumethoden und die optimalen klimatischen Bedingungen Kaliforniens zurückzuführen ist." },
+  { question: "Ist Cali Weed auch für Einsteiger geeignet?", answer: "Einsteiger sollten vorsichtig sein, da viele Cali-Weed-Sorten einen hohen THC-Gehalt aufweisen. Empfehlenswert ist eine niedrige Anfangsdosis oder die Wahl von Sorten mit ausgewogenerem THC-CBD-Verhältnis." },
+  { question: "Warum gilt Cali Weed als Premium-Cannabis?", answer: "Strenge Qualitätsstandards, ausgewählte Genetiken und die natürlichen Voraussetzungen Kaliforniens sorgen für gleichbleibend hohe Potenz, intensive Aromen und ein exklusives Gesamtprofil." },
+  { question: "Wie bewahre ich Cali Weed richtig auf?", answer: "Für einen optimalen Qualitätserhalt sollte Cali Weed in luftdichten und lichtgeschützten Behältern gelagert werden. Ein kühler, trockener und dunkler Ort hilft dabei, Frische, Aroma und Wirkstoffe langfristig zu schützen." },
+];
+---
+<Layout
+  title="Cali Weed Kaufen | Premium THC Cali Weed Packs & Blüten Deutschland Online"
+  description="Cali Weed kaufen in Deutschland ✓ Premium Cali Weed Packs ✓ Authentische Blüten aus Kalifornien ✓ THC-Gehalt bis 34% ✓ Diskreter Versand ✓ Topshelf Qualität"
+  canonical="/"
+  jsonLd={jsonLd}
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(226,179,62,0.08),transparent_60%)]"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
+          <span class="text-gold text-xs font-semibold uppercase tracking-wider">Premium Qualität seit 2022</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+          <span class="text-gold">Cali Weed</span> Kaufen
+        </h1>
+        <h2 class="text-xl md:text-2xl text-text-secondary font-medium mb-4">THC Cali Weed Packs & Blüten Deutschland Online</h2>
+        <p class="text-text-secondary text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
+          Wenn du <strong class="text-white">Cali Weed kaufen</strong> möchtest und auf der Suche nach echter Qualität bist, bist du hier genau richtig. Unser Sortiment umfasst Premium-Cannabis mit außergewöhnlichen Genetiken, intensiven Aromen und bis zu 34% THC-Gehalt.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/shop" class="bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl text-center transition-colors text-lg">Cali Weed Kaufen</a>
+          <a href="/kategorie/cali-weed-packs-kaufen" class="border border-gold/30 text-gold hover:bg-gold/10 font-bold px-8 py-3.5 rounded-xl text-center transition-colors text-lg">Cali Weed Packs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Signals -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
+    <TrustSignals />
+  </section>
+
+  <!-- Intro SEO Text -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-text-secondary text-base leading-relaxed mb-4">
+        Kalifornien ist nicht nur eines der bekanntesten Anbaugebiete der Welt, sondern auch die Quelle vieler ikonischer Cannabis-Sorten. Optimale Klimabedingungen, jahrelange Erfahrung und höchste Zuchtstandards sorgen dafür, dass <strong class="text-white">Cali Weed</strong> seinen legendären Ruf verdient. Genau diese Qualität bringen wir dir näher, wenn du <strong class="text-white">Cali Weed kaufen</strong> in Deutschland suchst und das echte Cali-Feeling erleben möchtest.
+      </p>
+      <p class="text-text-secondary text-base leading-relaxed">
+        Ob du dich für Cali Weed Blüten, exklusive Cali Genetics, hochwertige Samen oder moderne Alternativen interessierst – bei uns findest du eine sorgfältig ausgewählte Auswahl, die sich an den kalifornischen Topshelf-Standards orientiert.
+      </p>
+    </div>
+  </section>
+
+  <!-- Top Categories -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <h2 class="text-2xl md:text-3xl font-black text-white text-center mb-10">Unsere Top Marken</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      {categories.slice(0, 5).map((cat) => (
+        <a href={`/kategorie/${cat.slug}`} class="group bg-surface-light border border-white/5 rounded-2xl p-6 text-center hover:border-gold/30 hover:bg-gold/5 transition-all duration-300">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-gold/10 flex items-center justify-center text-3xl">🌿</div>
+          <h3 class="text-white font-bold text-sm group-hover:text-gold transition-colors">{cat.name}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- THC Gehalt Section -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-black text-white mb-6">Cali Weed THC-Gehalt</h2>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            Der THC-Gehalt von Cali Weed ist eines der wichtigsten Merkmale, die diese Sorten so begehrt machen. Während viele Cannabis-Sorten zwischen 15% und 20% THC liegen, erreicht <strong class="text-white">Cali Weed häufig über 25%</strong>, in speziellen Topshelf-Varianten sogar bis zu <strong class="text-gold">30% THC</strong>.
+          </p>
+          <a href="/shop" class="inline-block mt-6 bg-gold hover:bg-gold-dark text-primary font-bold px-6 py-3 rounded-xl transition-colors">Cali Weed Kaufen</a>
+        </div>
+        <div class="bg-surface-light rounded-2xl p-8 border border-white/5">
+          <div class="space-y-4">
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-white">Standard Cannabis</span><span class="text-text-secondary">15-20% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-text-secondary/30 rounded-full" style="width: 40%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-white">Cali Weed</span><span class="text-gold">25-30% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-gold/60 rounded-full" style="width: 65%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-white">Topshelf Cali Weed</span><span class="text-gold">30-34% THC</span></div><div class="h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-gold rounded-full" style="width: 85%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl md:text-3xl font-black text-white text-center mb-3">Unsere Top Cali Weed Produkte</h2>
+    <p class="text-text-secondary text-center mb-10 max-w-2xl mx-auto">Handverlesene Premium-Auswahl für höchste Ansprüche</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      {featuredProducts.slice(0, 8).map((product) => (
+        <ProductCard product={product} />
+      ))}
+    </div>
+    <div class="text-center mt-10">
+      <a href="/shop" class="inline-block bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl transition-colors">Alle Produkte ansehen</a>
+    </div>
+  </section>
+
+  <!-- Cali Weed Packs Section -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black text-white mb-6">Cali Weed Packs Kaufen</h2>
+      <div class="max-w-4xl">
+        <p class="text-text-secondary leading-relaxed mb-4"><strong class="text-white">Cali Weed Packs</strong> sind hochwertige Verpackungen, in denen sich meist auch hochwertige Blüten befinden. Durch ihre auffälligen und einzigartigen Designs sind sie besonders beliebt.</p>
+        <p class="text-text-secondary leading-relaxed mb-6">Wenn du <strong class="text-white">Cali Weed Packs kaufen</strong> möchtest, solltest du besonders auf Herkunft, Authentizität und Qualität achten.</p>
+        <a href="/kategorie/cali-weed-packs-kaufen" class="inline-block border border-gold/30 text-gold hover:bg-gold/10 font-bold px-6 py-3 rounded-xl transition-colors">Cali Weed Packs Kaufen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wirkung Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl md:text-3xl font-black text-white mb-6">Cali Weed Wirkung</h2>
+    <div class="max-w-4xl">
+      <p class="text-text-secondary leading-relaxed mb-6">Cali Weed ist für seine intensive und meist schnell einsetzende Wirkung bekannt:</p>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-gold font-bold mb-2">Euphorie & positive Stimmung</h3><p class="text-text-secondary text-sm">Kann dabei helfen, Stress abzubauen und das allgemeine Wohlbefinden zu steigern.</p></div>
+        <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-gold font-bold mb-2">Tiefe Entspannung</h3><p class="text-text-secondary text-sm">Unterstützt die Lockerung körperlicher Spannungen und fördert einen ruhigen Zustand.</p></div>
+        <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-gold font-bold mb-2">Kreativitätsförderung</h3><p class="text-text-secondary text-sm">Regt den Geist an und wird bei kreativen Tätigkeiten geschätzt.</p></div>
+        <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-gold font-bold mb-2">Schmerzlindernde Effekte</h3><p class="text-text-secondary text-sm">Wird oft genutzt, um Schmerzen oder Entzündungen zu reduzieren.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sorten Section -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black text-white mb-6">Cali Weed Sorten</h2>
+      <div class="max-w-4xl">
+        <p class="text-text-secondary leading-relaxed mb-6">Zu den bekanntesten Cali Weed Sorten gehören:</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-white font-bold mb-2">Blue Dream</h3><p class="text-text-secondary text-sm">Ausgewogene Mischung aus Entspannung und belebenden Effekten.</p></div>
+          <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-white font-bold mb-2">OG Kush</h3><p class="text-text-secondary text-sm">Klassiker mit intensiver, beruhigender Wirkung.</p></div>
+          <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-white font-bold mb-2">Girl Scout Cookies</h3><p class="text-text-secondary text-sm">Starke euphorische Wirkung und süßlich-würziges Aroma.</p></div>
+          <div class="bg-surface-light rounded-xl p-5 border border-white/5"><h3 class="text-white font-bold mb-2">Sour Diesel</h3><p class="text-text-secondary text-sm">Schnelle Wirkung und energiegeladener Effekt.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topshelf Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl md:text-3xl font-black text-white mb-6">Topshelf Gras: Was macht Cali Weed so besonders?</h2>
+    <div class="max-w-4xl">
+      <p class="text-text-secondary leading-relaxed mb-6">Topshelf Gras steht für Cannabis auf absolutem Premium-Niveau. Der Begriff stammt aus US-Dispensaries, wo die besten Blüten im obersten Regal platziert werden.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        {[["Perfekte Optik","Kompakte, sorgfältig getrimmte Buds mit dichter Trichom-Schicht."],["Ausdrucksstarkes Aroma","Intensive, vielschichtige Terpenprofile."],["Hohe Wirkstoffdichte","THC-Werte von häufig 25% oder mehr."],["Exzellente Herkunft","Handverlesene Sorten aus Kalifornien."]].map(([t,d]) => (
+          <div class="flex items-start gap-3"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-text-secondary text-sm"><strong class="text-white">{t}:</strong> {d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black text-white text-center mb-3">Kundenbewertungen</h2>
+      <p class="text-text-secondary text-center mb-10">Das sagen unsere zufriedenen Kunden</p>
+      <Reviews />
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl md:text-3xl font-black text-white text-center mb-10">Häufig gestellte Fragen zu Cali Weed</h2>
+    <FAQ items={faqItems} />
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-secondary/30 py-16 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-black text-white mb-4">Bereit für Premium Cali Weed?</h2>
+      <p class="text-text-secondary max-w-2xl mx-auto mb-8">Erlebe hochwertiges Cali-inspiriertes Cannabis mit intensiven Aromen und starker Wirkung.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/shop" class="bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl transition-colors text-lg">Cali Weed Kaufen</a>
+        <a href="/kategorie/cali-weed-packs-kaufen" class="border border-gold/30 text-gold hover:bg-gold/10 font-bold px-8 py-3.5 rounded-xl transition-colors text-lg">Cali Weed Packs</a>
+      </div>
+    </div>
+  </section>
+</Layout>

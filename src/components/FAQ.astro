@@ -1,0 +1,19 @@
+---
+interface Props {
+  items: Array<{question: string; answer: string}>;
+}
+const { items } = Astro.props;
+---
+<div class="space-y-3" itemscope itemtype="https://schema.org/FAQPage">
+  {items.map((item, index) => (
+    <details class="group bg-surface-light rounded-xl border border-white/5 overflow-hidden" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary class="flex items-center justify-between px-6 py-4 cursor-pointer text-white font-semibold hover:text-gold transition-colors list-none">
+        <span itemprop="name">{item.question}</span>
+        <svg class="w-5 h-5 text-text-secondary group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </summary>
+      <div class="px-6 pb-4" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <p itemprop="text" class="text-text-secondary text-sm leading-relaxed">{item.answer}</p>
+      </div>
+    </details>
+  ))}
+</div>

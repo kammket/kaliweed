@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Was ist das Besondere an Backpack Boyz Weed?", answer: "Backpack Boyz sind für ihre einzigartigen Strains, auffälligen Verpackungen und intensiven Aromen bekannt." },
+  { question: "Welche Sorten sind besonders gefragt?", answer: "Lemon Cherry Gelato, Black Cherry Gelato und Gotti gehören zu den beliebtesten Sorten." },
+  { question: "Wie erkenne ich originale Backpack Boyz Produkte?", answer: "Originale Packs haben hochwertige Verpackungen, Hologramme und ein starkes Aroma. Fälschungen sind oft minderwertig." },
+];
+---
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+<Layout
+  title="Backpack Boyz Weed Kaufen | Premium Cali Packs & Strains"
+  description="Backpack Boyz Weed kaufen ✓ Premium Cali Packs ✓ Einzigartige Strains ✓ Tipps zur Auswahl & Erkennung von original Backpack Boyz Produkten."
+  canonical="/backpack-boyz-weed-kaufen"
+  jsonLd={jsonLd}
+>
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Backpack Boyz Weed Kaufen</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Alles über Backpack Boyz Weed, beliebte Sorten und worauf du beim Kauf achten solltest. Premium Cali Packs für Kenner.</p>
+      </div>
+    </div>
+  </section>
+  <FAQ items={faqItems} />
+</Layout>

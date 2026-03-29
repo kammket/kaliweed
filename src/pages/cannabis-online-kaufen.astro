@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Ist Cannabis online kaufen legal?", answer: "Der Online-Kauf von Cannabis ist in Deutschland nur für medizinische Zwecke mit Rezept legal. Unser Shop bietet ausschließlich Informationen und keine illegalen Produkte an." },
+  { question: "Wie läuft der Versand ab?", answer: "Diskreter Versand, neutrale Verpackung und schnelle Lieferung sind bei seriösen Shops Standard. Achte auf Bewertungen und Gütesiegel." },
+  { question: "Welche Sorten sind besonders beliebt?", answer: "Sorten wie Gelato, Wedding Cake und OG Kush zählen zu den beliebtesten beim Online-Kauf." },
+];
+---
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+<Layout
+  title="Cannabis Online Kaufen | Sicher & Diskret Gras bestellen"
+  description="Cannabis online kaufen ✓ Diskreter Versand ✓ Premium Gras & THC Blüten ✓ Tipps für den sicheren Online-Kauf von Cannabis in Deutschland."
+  canonical="/cannabis-online-kaufen"
+  jsonLd={jsonLd}
+>
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Cannabis Online Kaufen</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Alles, was du über den sicheren und diskreten Online-Kauf von Cannabis wissen musst. Tipps, rechtliche Hinweise und beliebte Sorten im Überblick.</p>
+      </div>
+    </div>
+  </section>
+  <FAQ items={faqItems} />
+</Layout>

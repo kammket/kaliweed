@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Was sind THC Blüten?", answer: "THC Blüten sind die getrockneten Blütenstände der weiblichen Cannabispflanze mit hohem THC-Gehalt." },
+  { question: "Wie erkenne ich hochwertige THC Blüten?", answer: "Achte auf dichte, harzige Buds, intensives Aroma und eine dicke Trichom-Schicht." },
+  { question: "Wie lagere ich THC Blüten richtig?", answer: "Luftdicht, kühl und lichtgeschützt lagern, um Aroma und Potenz zu erhalten." },
+];
+---
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+<Layout
+  title="THC Blüten Kaufen | Premium Cannabis Blüten Online"
+  description="THC Blüten kaufen ✓ Premium Cannabis Blüten mit hohem THC-Gehalt ✓ Tipps zur Auswahl, Lagerung & Wirkung ✓ Jetzt hochwertige Blüten entdecken."
+  canonical="/thc-blueten-kaufen"
+  jsonLd={jsonLd}
+>
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">THC Blüten Kaufen</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Premium THC Blüten online kaufen – Tipps zur Auswahl, Lagerung und Wirkung. Erfahre, worauf es bei hochwertigen Cannabis Blüten ankommt.</p>
+      </div>
+    </div>
+  </section>
+  <FAQ items={faqItems} />
+</Layout>

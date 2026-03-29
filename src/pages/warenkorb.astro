@@ -1,0 +1,260 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Warenkorb | Cali Weed Kaufen"
+  description="Dein Warenkorb – Überprüfe deine ausgewählten Premium Cali Weed Produkte und schließe deine Bestellung ab."
+  canonical="/warenkorb"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-text-secondary mb-8">
+      <a href="/" class="hover:text-gold transition-colors">Startseite</a>
+      <span class="mx-2">/</span>
+      <span class="text-white">Warenkorb</span>
+    </nav>
+
+    <h1 class="text-3xl md:text-4xl font-black text-white mb-8">Warenkorb</h1>
+
+    <!-- Empty Cart -->
+    <div id="empty-cart" class="hidden text-center py-16">
+      <div class="text-6xl mb-4">🛒</div>
+      <h2 class="text-2xl font-bold text-white mb-4">Dein Warenkorb ist leer</h2>
+      <p class="text-text-secondary mb-8">Füge Produkte hinzu, um deine Bestellung aufzugeben.</p>
+      <a href="/shop" class="inline-block bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl transition-colors">Zum Shop</a>
+    </div>
+
+    <!-- Cart Content -->
+    <div id="cart-content" class="hidden">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Cart Items -->
+        <div class="lg:col-span-2">
+          <div class="bg-surface-light rounded-2xl border border-white/5 overflow-hidden">
+            <div class="p-4 border-b border-white/5">
+              <div class="grid grid-cols-12 gap-4 text-text-secondary text-xs font-semibold uppercase tracking-wider">
+                <div class="col-span-6">Produkt</div>
+                <div class="col-span-2 text-center">Preis</div>
+                <div class="col-span-2 text-center">Menge</div>
+                <div class="col-span-2 text-right">Gesamt</div>
+              </div>
+            </div>
+            <div id="cart-items"></div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div>
+          <div class="bg-surface-light rounded-2xl border border-white/5 p-6 sticky top-24">
+            <h2 class="text-xl font-bold text-white mb-6">Bestellübersicht</h2>
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between text-text-secondary"><span>Zwischensumme</span><span id="subtotal" class="text-white">€0.00</span></div>
+              <div class="flex justify-between text-text-secondary"><span>Versand</span><span class="text-success">Kostenlos</span></div>
+              <div class="border-t border-white/5 pt-3 flex justify-between font-bold"><span class="text-white">Gesamt</span><span id="total" class="text-gold text-xl">€0.00</span></div>
+            </div>
+            <button id="checkout-btn" class="w-full bg-gold hover:bg-gold-dark text-primary font-bold py-4 rounded-xl transition-colors text-lg mb-4">Zur Kasse</button>
+            <a href="/shop" class="block text-center text-text-secondary hover:text-gold text-sm transition-colors">Weiter einkaufen</a>
+            
+            <div class="mt-6 pt-6 border-t border-white/5">
+              <div class="flex items-center gap-2 text-text-secondary text-xs mb-2"><svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Sichere SSL-Verschlüsselung</div>
+              <div class="flex items-center gap-2 text-text-secondary text-xs mb-2"><svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Diskreter Versand</div>
+              <div class="flex items-center gap-2 text-text-secondary text-xs"><svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Kostenloser Versand</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Form (hidden by default) -->
+    <div id="checkout-form" class="hidden mt-8">
+      <div class="bg-surface-light rounded-2xl border border-white/5 p-6 md:p-8 max-w-2xl">
+        <h2 class="text-2xl font-bold text-white mb-6">Deine Daten</h2>
+        <form id="order-form" class="space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="firstName" class="block text-text-secondary text-sm mb-1">Vorname *</label>
+              <input type="text" id="firstName" name="firstName" required class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label for="lastName" class="block text-text-secondary text-sm mb-1">Nachname *</label>
+              <input type="text" id="lastName" name="lastName" required class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="email" class="block text-text-secondary text-sm mb-1">E-Mail Adresse *</label>
+            <input type="email" id="email" name="email" required class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors" />
+          </div>
+          <div>
+            <label for="phone" class="block text-text-secondary text-sm mb-1">Telefon</label>
+            <input type="tel" id="phone" name="phone" class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors" />
+          </div>
+          <div>
+            <label for="address" class="block text-text-secondary text-sm mb-1">Straße und Hausnummer *</label>
+            <input type="text" id="address" name="address" required class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors" />
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="zip" class="block text-text-secondary text-sm mb-1">PLZ *</label>
+              <input type="text" id="zip" name="zip" required class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label for="city" class="block text-text-secondary text-sm mb-1">Stadt *</label>
+              <input type="text" id="city" name="city" required class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="notes" class="block text-text-secondary text-sm mb-1">Anmerkungen zur Bestellung</label>
+            <textarea id="notes" name="notes" rows="3" class="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none transition-colors resize-none"></textarea>
+          </div>
+
+          <div class="border-t border-white/5 pt-6">
+            <h3 class="text-lg font-bold text-white mb-4">Zahlungsmethode</h3>
+            <div class="space-y-3">
+              <label class="flex items-center gap-3 bg-primary border border-white/10 rounded-xl p-4 cursor-pointer hover:border-gold/30 transition-colors">
+                <input type="radio" name="payment" value="crypto" checked class="text-gold" />
+                <span class="text-white font-semibold">Bitcoin / Kryptowährung</span>
+              </label>
+              <label class="flex items-center gap-3 bg-primary border border-white/10 rounded-xl p-4 cursor-pointer hover:border-gold/30 transition-colors">
+                <input type="radio" name="payment" value="bank" class="text-gold" />
+                <span class="text-white font-semibold">Banküberweisung</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full bg-gold hover:bg-gold-dark text-primary font-bold py-4 rounded-xl transition-colors text-lg mt-6">Bestellung aufgeben</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Order Success (hidden) -->
+    <div id="order-success" class="hidden text-center py-16">
+      <div class="text-6xl mb-4">✅</div>
+      <h2 class="text-2xl font-bold text-white mb-4">Bestellung aufgegeben!</h2>
+      <p class="text-text-secondary mb-8 max-w-lg mx-auto">Vielen Dank für deine Bestellung. Du erhältst in Kürze eine Bestätigungs-E-Mail mit den Zahlungsinformationen.</p>
+      <a href="/shop" class="inline-block bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl transition-colors">Weiter einkaufen</a>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cali_weed_cart') || '[]');
+  }
+
+  function saveCart(cart: any[]) {
+    localStorage.setItem('cali_weed_cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const cart = getCart();
+    const total = cart.reduce((sum: number, item: any) => sum + item.quantity, 0);
+    const countEl = document.getElementById('cart-count');
+    if (countEl) {
+      countEl.textContent = total.toString();
+      if (total > 0) countEl.classList.remove('hidden');
+      else countEl.classList.add('hidden');
+    }
+  }
+
+  function escapeHtml(str: string) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderCart() {
+    const cart = getCart();
+    const emptyEl = document.getElementById('empty-cart');
+    const contentEl = document.getElementById('cart-content');
+    const itemsEl = document.getElementById('cart-items');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+
+    if (cart.length === 0) {
+      emptyEl?.classList.remove('hidden');
+      contentEl?.classList.add('hidden');
+      return;
+    }
+
+    emptyEl?.classList.add('hidden');
+    contentEl?.classList.remove('hidden');
+
+    let html = '';
+    let subtotal = 0;
+
+    cart.forEach((item: any, index: number) => {
+      const itemTotal = item.price * item.quantity;
+      subtotal += itemTotal;
+      html += `
+        <div class="p-4 border-b border-white/5 last:border-0">
+          <div class="grid grid-cols-12 gap-4 items-center">
+            <div class="col-span-6">
+              <a href="/produkt/${encodeURIComponent(item.slug)}" class="text-white font-semibold hover:text-gold transition-colors text-sm">${escapeHtml(item.name)}</a>
+              <p class="text-text-secondary text-xs mt-1">${escapeHtml(item.category)} · ${escapeHtml(item.weight)}</p>
+            </div>
+            <div class="col-span-2 text-center text-text-secondary text-sm">€${item.price.toFixed(2)}</div>
+            <div class="col-span-2 flex items-center justify-center gap-2">
+              <button class="qty-btn w-7 h-7 rounded-lg bg-white/5 text-white hover:bg-gold/20 flex items-center justify-center text-sm" data-index="${index}" data-action="decrease">−</button>
+              <span class="text-white text-sm w-6 text-center">${item.quantity}</span>
+              <button class="qty-btn w-7 h-7 rounded-lg bg-white/5 text-white hover:bg-gold/20 flex items-center justify-center text-sm" data-index="${index}" data-action="increase">+</button>
+            </div>
+            <div class="col-span-2 text-right">
+              <span class="text-gold font-bold text-sm">€${itemTotal.toFixed(2)}</span>
+              <button class="remove-btn block text-red-400 hover:text-red-300 text-xs mt-1" data-index="${index}">Entfernen</button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    if (itemsEl) itemsEl.innerHTML = html;
+    if (subtotalEl) subtotalEl.textContent = `€${subtotal.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `€${subtotal.toFixed(2)}`;
+
+    // Bind events
+    document.querySelectorAll('.qty-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const el = btn as HTMLElement;
+        const idx = parseInt(el.dataset.index || '0');
+        const action = el.dataset.action;
+        const cart = getCart();
+        if (action === 'increase') {
+          cart[idx].quantity += 1;
+        } else if (action === 'decrease') {
+          cart[idx].quantity -= 1;
+          if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+        }
+        saveCart(cart);
+        renderCart();
+      });
+    });
+
+    document.querySelectorAll('.remove-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const el = btn as HTMLElement;
+        const idx = parseInt(el.dataset.index || '0');
+        const cart = getCart();
+        cart.splice(idx, 1);
+        saveCart(cart);
+        renderCart();
+      });
+    });
+  }
+
+  // Checkout button
+  document.getElementById('checkout-btn')?.addEventListener('click', () => {
+    document.getElementById('cart-content')?.classList.add('hidden');
+    document.getElementById('checkout-form')?.classList.remove('hidden');
+  });
+
+  // Order form
+  document.getElementById('order-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('cali_weed_cart');
+    updateCartCount();
+    document.getElementById('checkout-form')?.classList.add('hidden');
+    document.getElementById('order-success')?.classList.remove('hidden');
+  });
+
+  renderCart();
+</script>

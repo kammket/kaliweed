@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Wie funktioniert Cannabis Versand in Deutschland?", answer: "Medizinisches Cannabis wird in Deutschland per Rezept und über Apotheken versendet. Unser Shop bietet Informationen, keine illegalen Produkte." },
+  { question: "Ist der Versand diskret?", answer: "Seriöse Anbieter versenden Cannabis-Produkte in neutraler, diskreter Verpackung ohne Hinweise auf den Inhalt." },
+  { question: "Wie lange dauert der Versand?", answer: "Die Lieferzeit beträgt in der Regel 1-3 Werktage, abhängig vom Anbieter und der Versandart." },
+];
+---
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+<Layout
+  title="Cannabis Versand Deutschland | Sicher & Diskret"
+  description="Cannabis Versand Deutschland ✓ Diskreter Versand ✓ Infos zu Versandarten, Dauer & Sicherheit ✓ Tipps für den legalen Bezug von Cannabis."
+  canonical="/cannabis-versand-deutschland"
+  jsonLd={jsonLd}
+>
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Cannabis Versand Deutschland</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Alles über den sicheren und diskreten Versand von Cannabis in Deutschland. Rechtliche Hinweise, Versandarten und Tipps für den legalen Bezug.</p>
+      </div>
+    </div>
+  </section>
+  <FAQ items={faqItems} />
+</Layout>

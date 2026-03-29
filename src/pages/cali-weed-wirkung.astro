@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Wie schnell wirkt Cali Weed?", answer: "Bei Inhalation setzt die Wirkung in der Regel innerhalb von Sekunden bis wenigen Minuten ein. Das Maximum wird oft nach 15-30 Minuten erreicht und kann 2-4 Stunden anhalten." },
+  { question: "Kann man von Cali Weed Nebenwirkungen bekommen?", answer: "Ja, insbesondere bei hohen Dosierungen können Nebenwirkungen wie trockener Mund, gerötete Augen, Schwindel, erhöhter Herzschlag oder Angstzustände auftreten. Einsteiger sollten mit niedrigen Dosen beginnen." },
+  { question: "Welche Cali Weed Sorte hat die stärkste Wirkung?", answer: "Sorten mit über 30% THC wie Wedding Cake, Gelato #33 oder Alien OG gelten als besonders stark. Die Stärke hängt auch vom individuellen Terpenprofil und dem Entourage-Effekt ab." },
+  { question: "Ist die Wirkung bei Indica und Sativa unterschiedlich?", answer: "Ja, Indica-Sorten wirken eher körperlich entspannend und beruhigend, während Sativa-Sorten den Geist anregen und Kreativität fördern. Hybride bieten eine Mischung aus beiden Effekten." },
+];
+---
+<Layout
+  title="Cali Weed Wirkung | THC Effekte, Vorteile & Erfahrungen"
+  description="Cali Weed Wirkung erklärt ✓ THC-Effekte ✓ Indica vs Sativa Wirkung ✓ Medizinische Vorteile ✓ Erfahrungen ✓ Tipps für Einsteiger"
+  canonical="/cali-weed-wirkung"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Cali Weed Wirkung</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Alles über die Wirkung von Premium Cali Weed – von den sofortigen Effekten über medizinische Nutzungsmöglichkeiten bis hin zu den Unterschieden zwischen verschiedenen Sortentypen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-4xl">
+      <h2 class="text-2xl font-black text-white mb-6">Wie wirkt Cali Weed?</h2>
+      <p class="text-text-secondary leading-relaxed mb-6">Cali Weed ist für seine besonders intensive und schnell einsetzende Wirkung bekannt. Der hohe THC-Gehalt (oft 25-34%) und die komplexen Terpenprofile sorgen für ein einzigartiges Erlebnis, das sich deutlich von Standard-Cannabis unterscheidet.</p>
+
+      <h3 class="text-xl font-bold text-white mb-4">Die wichtigsten Wirkungen im Überblick</h3>
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <div class="text-3xl mb-3">😊</div>
+          <h4 class="text-gold font-bold mb-2">Euphorie & Stimmungsaufhellung</h4>
+          <p class="text-text-secondary text-sm">Cali Weed kann ein tiefes Gefühl des Wohlbefindens und der Zufriedenheit auslösen. Stress und negative Gedanken treten in den Hintergrund.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <div class="text-3xl mb-3">🧘</div>
+          <h4 class="text-gold font-bold mb-2">Tiefe Entspannung</h4>
+          <p class="text-text-secondary text-sm">Besonders Indica-dominante Sorten lösen körperliche Anspannung und führen zu einem entspannten, ruhigen Zustand.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <div class="text-3xl mb-3">🎨</div>
+          <h4 class="text-gold font-bold mb-2">Kreativitätsförderung</h4>
+          <p class="text-text-secondary text-sm">Sativa-dominante Sorten regen die Kreativität an und können neue Perspektiven und Ideen fördern.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <div class="text-3xl mb-3">💪</div>
+          <h4 class="text-gold font-bold mb-2">Schmerzlinderung</h4>
+          <p class="text-text-secondary text-sm">THC und andere Cannabinoide können bei der Linderung von chronischen Schmerzen und Entzündungen helfen.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <div class="text-3xl mb-3">😴</div>
+          <h4 class="text-gold font-bold mb-2">Schlafunterstützung</h4>
+          <p class="text-text-secondary text-sm">Indica-Sorten können bei Schlaflosigkeit helfen und einen erholsamen Schlaf fördern.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <div class="text-3xl mb-3">🍽️</div>
+          <h4 class="text-gold font-bold mb-2">Appetitanregung</h4>
+          <p class="text-text-secondary text-sm">Viele Cali Weed Sorten steigern den Appetit, was bei medizinischer Nutzung von Vorteil sein kann.</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-white mb-4">Wirkung nach Sortentyp</h3>
+      <div class="space-y-4 mb-8">
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <h4 class="text-gold font-bold mb-2">Indica Wirkung</h4>
+          <p class="text-text-secondary text-sm leading-relaxed">Indica-dominante Cali Weed Sorten bieten primär eine körperliche Wirkung. Sie entspannen die Muskeln, beruhigen den Geist und fördern den Schlaf. Ideal für den Abend oder zur Schmerzlinderung. Typische Sorten: OG Kush, Granddaddy Purple, Purple Punch.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <h4 class="text-gold font-bold mb-2">Sativa Wirkung</h4>
+          <p class="text-text-secondary text-sm leading-relaxed">Sativa-dominante Sorten wirken eher geistig anregend. Sie fördern Kreativität, Energie und soziale Interaktion. Ideal für den Tag oder kreative Aktivitäten. Typische Sorten: Sour Diesel, Jack Herer, Blue Dream.</p>
+        </div>
+        <div class="bg-surface-light rounded-xl p-6 border border-white/5">
+          <h4 class="text-gold font-bold mb-2">Hybrid Wirkung</h4>
+          <p class="text-text-secondary text-sm leading-relaxed">Hybrid-Sorten vereinen Indica- und Sativa-Eigenschaften zu einem ausgewogenen Erlebnis. Die genaue Balance variiert je nach Sorte. Typische Sorten: Gelato, Girl Scout Cookies, Runtz.</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-white mb-4">Der Entourage-Effekt</h3>
+      <p class="text-text-secondary leading-relaxed mb-6">Ein wichtiger Grund für die besondere Wirkung von Cali Weed ist der sogenannte Entourage-Effekt. Dabei verstärken und modulieren die über 100 verschiedenen Cannabinoide und Terpene in der Pflanze die Wirkung gegenseitig. Dies erklärt, warum hochwertige, vollspektrum Cali Weed Sorten ein vielschichtigeres Erlebnis bieten als isoliertes THC.</p>
+
+      <h3 class="text-xl font-bold text-white mb-4">Tipps für Einsteiger</h3>
+      <div class="bg-surface-light rounded-xl p-6 border border-gold/20 mb-8">
+        <ul class="space-y-3 text-text-secondary text-sm">
+          <li class="flex items-start gap-2"><span class="text-gold">•</span>Beginne mit einer niedrigen Dosis (1-2 Züge) und warte 15-30 Minuten</li>
+          <li class="flex items-start gap-2"><span class="text-gold">•</span>Wähle eine Sorte mit moderatem THC-Gehalt (18-22%)</li>
+          <li class="flex items-start gap-2"><span class="text-gold">•</span>Trinke ausreichend Wasser und halte Snacks bereit</li>
+          <li class="flex items-start gap-2"><span class="text-gold">•</span>Wähle eine entspannte, sichere Umgebung</li>
+          <li class="flex items-start gap-2"><span class="text-gold">•</span>Konsumiere nicht auf nüchternen Magen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-secondary/30 py-16 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-black text-white mb-4">Premium Cali Weed entdecken</h2>
+      <p class="text-text-secondary max-w-2xl mx-auto mb-8">Erlebe die einzigartige Wirkung von authentischem Cali Weed – jetzt im Shop.</p>
+      <a href="/shop" class="inline-block bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl transition-colors">Zum Shop</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-black text-white text-center mb-10">Häufige Fragen zur Cali Weed Wirkung</h2>
+    <FAQ items={faqItems} />
+  </section>
+</Layout>

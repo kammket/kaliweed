@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categories, getProductsByCategory } from '../../data/products';
+
+export function getStaticPaths() {
+  return categories.map((cat) => ({
+    params: { slug: cat.slug },
+    props: { category: cat },
+  }));
+}
+
+const { category } = Astro.props;
+const categoryProducts = getProductsByCategory(category.slug);
+
+const seoDescriptions: Record<string, string> = {
+  'wizard-trees-flowers': 'Wizard Trees Flowers kaufen – Premium Cali Weed Blüten mit exklusiven Genetiken und intensiven Aromen. Handverlesene Topshelf-Qualität.',
+  'wizard-trees-pre-rolls': 'Wizard Trees Pre-Rolls kaufen – Fertig gedrehte Premium Cali Weed Joints mit Top-Genetiken. Sofort genussbereit.',
+  'jungle-boys': 'Jungle Boys Weed kaufen – Legendäre Cali Weed Sorten mit intensiven Terpenprofilen und hohem THC-Gehalt.',
+  'backpack-boyz': 'Backpack Boyz kaufen – Exklusive Cali Weed Sorten mit einzigartigen Aromen und Topshelf-Qualität.',
+  'ten-co': 'TEN Co Cannabis kaufen – Premium Cali Weed mit ausgefeilten Genetiken und starker Wirkung.',
+  'cookies': 'Cookies Weed kaufen – Die berühmte Cali Weed Marke von Berner. Girl Scout Cookies, Gary Payton und mehr.',
+  'alien-labs': 'Alien Labs Cannabis kaufen – Innovative Cali Weed Sorten mit außergewöhnlichen Terpenprofilen.',
+  'connected-cannabis': 'Connected Cannabis kaufen – Premium Cali Weed mit intensiven Aromen und starker Wirkung.',
+  'doja-weed': 'Doja Weed kaufen – Exklusive Cannabis-Sorten mit kalifornischer Topshelf-Qualität.',
+  'cali-weed-packs-kaufen': 'Cali Weed Packs kaufen – Original Cali Packs mit hochwertigen Blüten in einzigartigen Designs.',
+  'cannabis-kaufen': 'Cannabis kaufen – Premium Blüten in bewährter Qualität. Klassische Sorten zu fairen Preisen.',
+  'stiiizy': 'Stiiizy kaufen – Premium Cannabis Produkte aus Kalifornien mit einzigartigen Sorten.',
+};
+---
+<Layout
+  title={`${category.name} | Premium Cali Weed Kaufen`}
+  description={seoDescriptions[category.slug] || `${category.name} kaufen – Premium Cali Weed Sorten ✓ Topshelf Qualität ✓ Diskreter Versand ✓ Jetzt bestellen`}
+  canonical={`/kategorie/${category.slug}`}
+>
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <nav class="text-sm text-text-secondary">
+      <a href="/" class="hover:text-gold transition-colors">Startseite</a>
+      <span class="mx-2">/</span>
+      <a href="/shop" class="hover:text-gold transition-colors">Shop</a>
+      <span class="mx-2">/</span>
+      <span class="text-white">{category.name}</span>
+    </nav>
+  </div>
+
+  <!-- Category Header -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-3xl md:text-4xl font-black text-white mb-4">{category.name}</h1>
+    <p class="text-text-secondary max-w-3xl">{seoDescriptions[category.slug] || `Entdecke unser Sortiment an ${category.name} – handverlesene Premium Cali Weed Produkte.`}</p>
+    <p class="text-text-secondary text-sm mt-3">{categoryProducts.length} Produkte</p>
+  </section>
+
+  <!-- Product Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      {categoryProducts.map((product) => (
+        <ProductCard product={product} />
+      ))}
+    </div>
+  </section>
+
+  <!-- SEO Content -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <h2 class="text-2xl font-black text-white mb-4">{category.name} – Premium Cali Weed</h2>
+        <p class="text-text-secondary leading-relaxed mb-4">
+          Unsere {category.name} Kollektion umfasst {categoryProducts.length} sorgfältig ausgewählte Produkte, die den höchsten Qualitätsstandards entsprechen. Jede Sorte wurde handverlesen, um dir das authentische Cali-Erlebnis nach Hause zu bringen.
+        </p>
+        <p class="text-text-secondary leading-relaxed">
+          Alle Produkte zeichnen sich durch intensive Aromen, hohe THC-Gehalte und kompromisslose Qualität aus. Bestelle jetzt und überzeuge dich selbst von der Topshelf-Qualität.
+        </p>
+        <div class="mt-6">
+          <a href="/shop" class="inline-block border border-gold/30 text-gold hover:bg-gold/10 font-bold px-6 py-3 rounded-xl transition-colors">Alle Produkte ansehen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

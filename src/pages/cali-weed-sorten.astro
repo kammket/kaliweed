@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import FAQ from '../components/FAQ.astro';
+import { products } from '../data/products';
+
+const sortenProducts = products.filter(p => p.featured).slice(0, 8);
+
+const faqItems = [
+  { question: "Welche Cali Weed Sorten sind die stärksten?", answer: "Sorten wie Gelato, Wedding Cake und Alien OG gehören zu den stärksten Cali Weed Sorten mit THC-Gehalten von bis zu 34%. Diese Topshelf-Sorten bieten intensive Wirkung und komplexe Terpenprofile." },
+  { question: "Was ist der Unterschied zwischen Indica und Sativa Cali Weed?", answer: "Indica-Sorten wirken eher entspannend und beruhigend, während Sativa-Sorten belebend und kreativitätsfördernd sind. Hybride bieten eine ausgewogene Mischung beider Effekte." },
+  { question: "Wie erkenne ich echtes Cali Weed?", answer: "Echtes Cali Weed zeichnet sich durch dichte, harzige Buds mit starkem Geruch, vielschichtigem Aroma und einer dicken Trichom-Schicht aus. Die Qualität ist deutlich höher als bei Standard-Cannabis." },
+  { question: "Welche Cali Weed Sorte ist für Anfänger geeignet?", answer: "Blue Dream oder Sour Diesel mit moderatem THC-Gehalt sind gute Einstiegssorten. Sie bieten ein ausgewogenes Erlebnis ohne überwältigende Wirkung." },
+];
+---
+<Layout
+  title="Cali Weed Sorten | Alle Premium Cannabis Sorten im Überblick"
+  description="Cali Weed Sorten Überblick ✓ Indica, Sativa & Hybrid ✓ THC bis 34% ✓ OG Kush, Gelato, Blue Dream & mehr ✓ Alle Cali Weed Sorten entdecken"
+  canonical="/cali-weed-sorten"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Cali Weed Sorten</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Ein umfassender Überblick über die beliebtesten und begehrtesten Cannabis-Sorten aus Kalifornien – von klassischen Legendes bis hin zu modernen Hybriden.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-4xl">
+      <h2 class="text-2xl font-black text-white mb-6">Was macht Cali Weed Sorten so besonders?</h2>
+      <p class="text-text-secondary leading-relaxed mb-6">Kalifornien ist die Wiege vieler legendärer Cannabis-Sorten. Die einzigartigen klimatischen Bedingungen, die Expertise der Züchter und strenge Qualitätskontrollen sorgen dafür, dass Cali Weed Sorten weltweit als Goldstandard gelten.</p>
+
+      <h3 class="text-xl font-bold text-white mb-4">Indica-Sorten</h3>
+      <p class="text-text-secondary leading-relaxed mb-4">Indica-dominante Cali Weed Sorten sind bekannt für ihre entspannende und beruhigende Wirkung. Sie eignen sich besonders für den Abend und zur Unterstützung bei Schlafproblemen oder körperlichen Beschwerden.</p>
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        {[["OG Kush","Klassiker mit erdigen, pinienartigen Aromen und starker Entspannungswirkung. THC: 25-30%"],["Granddaddy Purple","Intensiver Traubengeschmack mit starker körperlicher Entspannung. THC: 22-27%"],["Purple Punch","Süßes Beerenaroma mit beruhigender, sedierender Wirkung. THC: 20-25%"],["Wedding Cake","Vanille-süßes Aroma mit starker euphorischer und entspannender Wirkung. THC: 25-32%"]].map(([name, desc]) => (
+          <div class="bg-surface-light rounded-xl p-5 border border-white/5">
+            <h4 class="text-gold font-bold mb-2">{name}</h4>
+            <p class="text-text-secondary text-sm">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="text-xl font-bold text-white mb-4">Sativa-Sorten</h3>
+      <p class="text-text-secondary leading-relaxed mb-4">Sativa-dominante Sorten bieten belebende, kreativitätsfördernde Effekte und sind ideal für den Tag oder soziale Anlässe.</p>
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        {[["Sour Diesel","Scharfes, dieselartiges Aroma mit energiegeladener, aufmunternder Wirkung. THC: 22-26%"],["Jack Herer","Würzig-piniges Profil mit klarem, fokussiertem Effekt. THC: 20-24%"],["Blue Dream","Beerensüße Aromen mit ausgewogener, sanfter Euphorie. THC: 21-28%"],["Durban Poison","Süß-würziges Aroma mit klarem, energetisierendem Effekt. THC: 20-25%"]].map(([name, desc]) => (
+          <div class="bg-surface-light rounded-xl p-5 border border-white/5">
+            <h4 class="text-gold font-bold mb-2">{name}</h4>
+            <p class="text-text-secondary text-sm">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="text-xl font-bold text-white mb-4">Hybrid-Sorten</h3>
+      <p class="text-text-secondary leading-relaxed mb-4">Hybride vereinen das Beste beider Welten und bieten vielseitige Effekte.</p>
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        {[["Gelato","Dessert-artige Süße mit ausgeglichener Euphorie und Entspannung. THC: 25-34%"],["Girl Scout Cookies","Süßlich-erdiges Aroma mit voller Euphorie und Kreativität. THC: 25-30%"],["Runtz","Fruchtig-süßes Profil mit ausgewogener Wirkung. THC: 24-29%"],["Zkittlez","Tropisch-süß mit entspannender, stimmungsaufhellender Wirkung. THC: 22-27%"]].map(([name, desc]) => (
+          <div class="bg-surface-light rounded-xl p-5 border border-white/5">
+            <h4 class="text-gold font-bold mb-2">{name}</h4>
+            <p class="text-text-secondary text-sm">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="bg-secondary/30 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-black text-white mb-8">Beliebte Cali Weed Sorten im Shop</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {sortenProducts.map((p) => <ProductCard product={p} />)}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/shop" class="inline-block bg-gold hover:bg-gold-dark text-primary font-bold px-8 py-3.5 rounded-xl transition-colors">Alle Sorten ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-black text-white text-center mb-10">Häufige Fragen zu Cali Weed Sorten</h2>
+    <FAQ items={faqItems} />
+  </section>
+</Layout>

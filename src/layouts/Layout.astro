@@ -1,0 +1,219 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  jsonLd?: object;
+}
+
+const { title, description, canonical, ogImage = '/images/og-default.webp', jsonLd } = Astro.props;
+const siteUrl = 'https://caliweedkaufen.de';
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:site_name" content="Cali Weed Kaufen" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  {jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="sticky top-0 z-50 bg-primary/95 backdrop-blur-md border-b border-white/5">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="/" class="flex items-center gap-2 group" aria-label="Startseite">
+          <span class="text-xl md:text-2xl font-black text-gold tracking-tight group-hover:text-gold-dark transition-colors">CALI WEED</span>
+          <span class="text-xs md:text-sm text-text-secondary font-semibold uppercase tracking-widest">Kaufen</span>
+        </a>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-text-secondary hover:text-white" aria-label="Menü öffnen">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="/" class="text-text-secondary hover:text-gold transition-colors">Start</a>
+          <a href="/shop" class="text-text-secondary hover:text-gold transition-colors">Shop</a>
+          <a href="/kategorie/wizard-trees" class="text-text-secondary hover:text-gold transition-colors">Wizard Trees</a>
+          <a href="/kategorie/jungle-boys-weed" class="text-text-secondary hover:text-gold transition-colors">Jungle Boys</a>
+          <a href="/kategorie/backpack-boyz-weed" class="text-text-secondary hover:text-gold transition-colors">Backpack Boyz</a>
+          <a href="/kategorie/cali-weed-packs-kaufen" class="text-text-secondary hover:text-gold transition-colors">Cali Packs</a>
+          <a href="/warenkorb" class="relative bg-gold hover:bg-gold-dark text-primary font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+            Warenkorb
+            <span id="cart-count-desktop" class="hidden absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col gap-2">
+          <a href="/" class="px-3 py-2 text-text-secondary hover:text-gold hover:bg-white/5 rounded-lg transition-colors">Start</a>
+          <a href="/shop" class="px-3 py-2 text-text-secondary hover:text-gold hover:bg-white/5 rounded-lg transition-colors">Shop</a>
+          <a href="/kategorie/wizard-trees" class="px-3 py-2 text-text-secondary hover:text-gold hover:bg-white/5 rounded-lg transition-colors">Wizard Trees</a>
+          <a href="/kategorie/jungle-boys-weed" class="px-3 py-2 text-text-secondary hover:text-gold hover:bg-white/5 rounded-lg transition-colors">Jungle Boys</a>
+          <a href="/kategorie/backpack-boyz-weed" class="px-3 py-2 text-text-secondary hover:text-gold hover:bg-white/5 rounded-lg transition-colors">Backpack Boyz</a>
+          <a href="/kategorie/cali-weed-packs-kaufen" class="px-3 py-2 text-text-secondary hover:text-gold hover:bg-white/5 rounded-lg transition-colors">Cali Packs</a>
+          <a href="/warenkorb" class="px-3 py-2 bg-gold text-primary font-bold rounded-lg text-center">Warenkorb</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <footer class="bg-primary border-t border-white/5 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div>
+          <h3 class="text-gold text-lg font-bold mb-4">Cali Weed Kaufen</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Premium Cali Weed und Cali Weed Packs in Deutschland online kaufen. Authentische Qualität aus Kalifornien mit diskretem Versand.</p>
+          <div class="flex gap-4 mt-4">
+            <span class="text-text-secondary hover:text-gold cursor-pointer transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </span>
+            <span class="text-text-secondary hover:text-gold cursor-pointer transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 2C6.497 2 2.027 6.48 2.027 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112.017 6.8c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.52-4.47-10-9.983-10z"/></svg>
+            </span>
+            <span class="text-text-secondary hover:text-gold cursor-pointer transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </span>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-white text-sm font-bold uppercase tracking-wider mb-4">Kategorien</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/kategorie/wizard-trees" class="text-text-secondary hover:text-gold transition-colors">Wizard Trees Kaufen</a></li>
+            <li><a href="/kategorie/jungle-boys-weed" class="text-text-secondary hover:text-gold transition-colors">Jungle Boys Weed</a></li>
+            <li><a href="/kategorie/backpack-boyz-weed" class="text-text-secondary hover:text-gold transition-colors">Backpack Boyz Weed</a></li>
+            <li><a href="/kategorie/ten-co-weed" class="text-text-secondary hover:text-gold transition-colors">TEN Co Weed</a></li>
+            <li><a href="/kategorie/alien-labs-weed" class="text-text-secondary hover:text-gold transition-colors">Alien Labs Weed</a></li>
+            <li><a href="/kategorie/doja-weed" class="text-text-secondary hover:text-gold transition-colors">Doja Weed</a></li>
+            <li><a href="/kategorie/cannabis-kaufen" class="text-text-secondary hover:text-gold transition-colors">Cannabis Kaufen</a></li>
+            <li><a href="/cannabis-online-kaufen" class="text-text-secondary hover:text-gold transition-colors">Cannabis Online Kaufen</a></li>
+            <li><a href="/thc-blueten-kaufen" class="text-text-secondary hover:text-gold transition-colors">THC Blüten Kaufen</a></li>
+            <li><a href="/premium-gras-bestellen" class="text-text-secondary hover:text-gold transition-colors">Premium Gras Bestellen</a></li>
+            <li><a href="/jungle-boys-weed-kaufen" class="text-text-secondary hover:text-gold transition-colors">Jungle Boys Weed Kaufen</a></li>
+            <li><a href="/backpack-boyz-weed-kaufen" class="text-text-secondary hover:text-gold transition-colors">Backpack Boyz Weed Kaufen</a></li>
+            <li><a href="/wizard-trees-weed-kaufen" class="text-text-secondary hover:text-gold transition-colors">Wizard Trees Weed Kaufen</a></li>
+            <li><a href="/indica-vs-sativa" class="text-text-secondary hover:text-gold transition-colors">Indica vs Sativa</a></li>
+            <li><a href="/cannabis-versand-deutschland" class="text-text-secondary hover:text-gold transition-colors">Cannabis Versand</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-sm font-bold uppercase tracking-wider mb-4">Information</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/cali-weed-sorten" class="text-text-secondary hover:text-gold transition-colors">Cali Weed Sorten</a></li>
+            <li><a href="/cali-weed-wirkung" class="text-text-secondary hover:text-gold transition-colors">Cali Weed Wirkung</a></li>
+            <li><a href="/cali-weed-packs" class="text-text-secondary hover:text-gold transition-colors">Cali Weed Packs</a></li>
+            <li><a href="/topshelf-gras" class="text-text-secondary hover:text-gold transition-colors">Topshelf Gras</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-sm font-bold uppercase tracking-wider mb-4">Vertrauen & Sicherheit</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2 text-sm text-text-secondary">
+              <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              Sichere Bezahlung
+            </div>
+            <div class="flex items-center gap-2 text-sm text-text-secondary">
+              <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              Diskreter Versand
+            </div>
+            <div class="flex items-center gap-2 text-sm text-text-secondary">
+              <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Geprüfte Qualität
+            </div>
+            <div class="flex items-center gap-2 text-sm text-text-secondary">
+              <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              24/7 Support
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 text-center">
+        <p class="text-text-secondary text-sm">Copyright 2026 &copy; Cali Weed Kaufen | Cali Weed Packs Deutschland</p>
+      </div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+
+    // Cart functionality
+    const CART_KEY = 'cali_weed_cart';
+
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+      } catch { return []; }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function addToCart(product) {
+      const cart = getCart();
+      const existing = cart.find(item => item.id === product.id && item.weight === product.weight);
+      if (existing) {
+        existing.quantity += product.quantity;
+      } else {
+        cart.push(product);
+      }
+      saveCart(cart);
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const desktopEl = document.getElementById('cart-count-desktop');
+      if (desktopEl) {
+        if (count > 0) {
+          desktopEl.textContent = count.toString();
+          desktopEl.classList.remove('hidden');
+          desktopEl.classList.add('flex');
+        } else {
+          desktopEl.classList.add('hidden');
+          desktopEl.classList.remove('flex');
+        }
+      }
+    }
+
+    window.getCart = getCart;
+    window.saveCart = saveCart;
+    window.addToCart = addToCart;
+
+    updateCartCount();
+  </script>
+</body>
+</html>

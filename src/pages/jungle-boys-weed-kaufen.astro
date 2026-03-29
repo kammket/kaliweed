@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqItems = [
+  { question: "Was macht Jungle Boys Weed besonders?", answer: "Jungle Boys sind bekannt für exklusive Genetiken, hohe Potenz und außergewöhnliche Aromen. Ihre Strains sind weltweit begehrt." },
+  { question: "Welche Sorten sind am beliebtesten?", answer: "Beliebte Sorten sind Wedding Cake, Jungle Cake und Mimosa. Jede Sorte überzeugt durch einzigartiges Terpenprofil." },
+  { question: "Wie erkenne ich echtes Jungle Boys Weed?", answer: "Achte auf die Verpackung, das Aroma und die dichte Trichom-Schicht. Originale Produkte sind oft limitiert." },
+];
+---
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+<Layout
+  title="Jungle Boys Weed Kaufen | Exklusive Strains & Packs"
+  description="Jungle Boys Weed kaufen ✓ Exklusive Strains ✓ Premium Cali Weed ✓ Tipps zur Auswahl & Erkennung von original Jungle Boys Produkten."
+  canonical="/jungle-boys-weed-kaufen"
+  jsonLd={jsonLd}
+>
+  <section class="bg-gradient-to-br from-primary via-secondary to-accent py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-6">Jungle Boys Weed Kaufen</h1>
+        <p class="text-text-secondary text-lg leading-relaxed">Entdecke exklusive Jungle Boys Strains und Packs. Tipps zur Auswahl, Qualität und worauf du beim Kauf achten solltest.</p>
+      </div>
+    </div>
+  </section>
+  <FAQ items={faqItems} />
+</Layout>
